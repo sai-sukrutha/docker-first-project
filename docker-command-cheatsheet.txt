@@ -159,9 +159,16 @@ docker start big-star-collectibles:v2
 
 docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]
 
-docker run -it -d -p 5000:5000 -v ${PWD}:/app/code big-star-collectibles
+docker run -it -d -p 5000:5000 -v ${PWD}:/app/code big-star-collectibles    
+
+${PWD} is not working in powershell
+Also we can see running containers using docker ps
 
 http://localhost:5000
+
+Docker can be stopped using stop or kill. Stop will gracefully terminate(Sigterm signal).
+Kill will abruptly kill on priority(SigKill signal). Stop is safer options. Kill may lead to any data loss.
+Any process that is killed will not intimate parent about the kill.
 
 docker stop [OPTIONS] CONTAINER [CONTAINER...]
 
@@ -174,28 +181,33 @@ docker kill big-star-collectibles:v2
 *** 04_02 ***
 https://docs.docker.com/engine/reference/commandline/ps/
 
+Shows running containers 
 docker ps [OPTIONS]
 
 docker ps
 
-docker ps -a
+docker ps -a        (Shows all containers running or stopped)
 
-docker ps -n 1
+docker ps -n 1      (only number of containers specified - which are latest)
 
-docker ps -q
+docker ps -q        (displays only ids)
 
-docker ps -s
+docker ps -s        (shows file size)
 
-docker ps -l
+docker ps -l        (shows last created)
 
-docker ps --no-trunc
+docker ps --no-trunc    (full output)
 
+Also filters
 docker ps --filter label="com.example.vendor"="Big Star Collectibles"
 
+Filter based on exit code (Common exit codes below)
 docker ps -a --filter 'exited=0'
 
 docker ps --filter ancestor=big-star-collectibles
 
+
+We can also format in json and table notations
 docker ps --filter label="com.example.vendor"="Big Star Collectibles" --format json
 
 docker ps --filter label="com.example.vendor"="Big Star Collectibles" --format "table {{.ID}}\t{{.Names}}"
