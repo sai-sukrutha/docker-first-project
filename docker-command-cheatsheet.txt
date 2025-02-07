@@ -41,31 +41,48 @@ docker build --no-cache .
 docker build --help
 
 *** 03_01 ***
+
+To search for base image (How do we know the name of base image?). Here we need python runtime so we search using python as keyword
 docker search python
 
+Above search output also shows, Stars - how many people liked, Official or not
+We can filter our searches using these options:
+
+Filter to serach only official images
 docker search --filter is-official=true python
 
+Images with minumum no of stars
 docker search --filter stars=100 python
 
+Automated tells if you can build images automatically using git etc.,
 docker search --filter is-automated=true python
 
+We need to specify --filer for each filter
 docker search --filter is-official=true --filter stars=10 --filter is-automated=false python
 
+Limit search output
 docker search --limit 4 python
 
+Without truncating - can read full descriptions
 docker search --no-trunc python
 
+Below commands format search result using go templates (Not very needed now)
 docker search --format "{{.Name}}: {{.Description}}" --no-trunc python
 
+Format in different table structures
 docker search --format "table {{.Name}}\t{{.IsAutomated}}\t{{.IsOfficial}}\t{{.Description}}\t{{.StarCount}}" python
 
 docker search --format "table {{.Name}}\t{{.IsOfficial}}\t{{.Description}}\t{{.StarCount}}" --filter is-official=true --filter stars=10 --no-trunc python
 
 docker search --help
 
+To pull  docker image and save in local
 docker image pull python
 
 https://hub.docker.com/_/python
+Check the versions by visiting docker hub and download the version needed.
+Not specifying version like the command above downloads latest
+Don’t use latest as it will automatically update version of base image without our verification and testing
 
 docker image pull python:3.12-rc-bookworm
 
