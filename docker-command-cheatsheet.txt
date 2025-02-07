@@ -144,8 +144,14 @@ docker rmi [OPTIONS] IMAGE [IMAGE...]
 
 docker rmi -f big-star-collectibles:v2
 
+with above command(using image name and not image ID), only that image with that tag is deleted. Other images with the same image id remain.
+But if we give image id , all images associated are deleted 
 docker rmi -f IMAGE_ID
 
+We can also remove images by digest. Use below to get digests, below command to remove by digest
 docker images --digests
 
 docker rmi -f sbenhoff/big-star-collectibles@[DIGEST]
+
+
+To remove images in docker hub, we need to go by UI, select the tag to delete and press Delete Tag
