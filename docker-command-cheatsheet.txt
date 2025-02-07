@@ -28,14 +28,25 @@ docker build [OPTIONS] PATH | URL | -
 
 https://docs.docker.com/engine/reference/commandline/build/
 
+Notes:
+Command we usually use (here also)
 docker build .
 
+If we need to provide Dockerfile path when Dockerfile is named something different 
+Eg: Different docker files for QA, staging, prod etc., to run and test in different settings
 docker build -f [dockerfile] .
 
+--force-rm=true - removes any intermediate containers that are generated during each layer of images. 
+This Removes even if build is unsuccessful
 docker build --force-rm=true .
 
+In case of unsuccessful build, we want to retain intermediate containers for debugging. Then we use below
 docker build --rm=true .
 
+Docker has cache - All previously built image layers are cached and re-used. This helps in speeding up of build process for sub-sequennt builds
+But if the installation depends on external resource, we can tell not to use cache using --no-cache option.
+Also if there was an unsuccessful build, it is better to use this option next time (to not use previous unsuccessful cache).
+This skips the cache and rebuilds the entire image 
 docker build --no-cache .
 
 docker build --help
