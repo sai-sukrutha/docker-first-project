@@ -133,6 +133,20 @@ docker pull sbenhoff/big-star-collectibles-repo:big-star-collectibles
 *** 03_05 ***
 docker image ls
 
+Command to inspect image (Also can inspect in VSCode )
+(Added sample file output from inspect - in json format) - Some useful tags below
 docker image inspect IMAGE_ID
 
+Some most useful info in the information shown in inspect
+RepoTags - all tha tags associated with image
+Created - When image is Created UTC format
+Container - if image is attached to a Container
+Config - this section ha environment settings, useful in debugging or checking all the paths, versions etc.,
+    env
+    Cmd - command to run - set in dockerfile
+    labels - labels in Dockerfile also show in config section
+
+
+We can also format the inspect output (here viewing only labels in config section)
+This is not working - check later
 docker image inspect --format='{{json .Config.Labels}}' big-star-collectibles:v2

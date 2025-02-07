@@ -1,0 +1,82 @@
+[
+    {
+        "Id": "sha256:f798825ac5684fb5f2f1a6a67778aa208fac451a8a7163325082b99747b7ee8d",
+        "RepoTags": [
+            "big-star-collectibles:latest",
+            "big-star-collectibles:v2",
+            "saisukrutha/docker-first-project:big-star-collectibles"
+        ],
+        "RepoDigests": [
+            "big-star-collectibles@sha256:f798825ac5684fb5f2f1a6a67778aa208fac451a8a7163325082b99747b7ee8d",
+            "saisukrutha/docker-first-project@sha256:f798825ac5684fb5f2f1a6a67778aa208fac451a8a7163325082b99747b7ee8d"
+        ],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2025-02-07T21:22:58.579497585Z",
+        "DockerVersion": "27.4.0",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.12.0rc3",
+                "PYTHON_PIP_VERSION=23.2.1",
+                "PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/9af82b715db434abb94a0a6f3569f43e72157346/public/get-pip.py",
+                "PYTHON_GET_PIP_SHA256=45a2bb8bf2bb5eff16fdd00faef6f29731831c7c59bd9fc2bf1f3bed511ff1fe",
+                "FLASK_APP=app.py"
+            ],
+            "Cmd": [
+                "flask",
+                "run",
+                "--host=0.0.0.0"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "com.example.vendor": "Big Star Collectibles",
+                "description": "The Big Star Collectibles Website     using the Python base image.",
+                "version": "1.0"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 395751898,
+        "GraphDriver": {
+            "Data": null,
+            "Name": "overlayfs"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:7c85cfa30cb11b7606c0ee84c713a8f6c9faad7cb7ba92f1f33ba36d4731cc82",
+                "sha256:f6589095d5b5a4933db1a75edc905d20570c9f6e5dbebd9a7c39a8eef81bb3fd",
+                "sha256:a981dddd4c650efa96d82013fba1d1189cf4648cd1e766b34120b32af9ce8a06",
+                "sha256:01d6cdeac53917b874d5adac862ab90dcf22489b7914611a1bde7c84db0a99ae",
+                "sha256:c26432533a6af2f6f59d50aba5f76f2b61c2e0088c7e01b5d2a8708b6cb9ef08",
+                "sha256:7f97500c5f85d7efbb2b3fbe79150470606e3df4fc28c419153d40792340016a",
+                "sha256:3b68d3e75a8356242e1144fbb1551f56ffafb687eb88d4b73a4c77598a79bc06",
+                "sha256:1106c7a71c160b54380c39877b0944ad5f66c159ad2abdbb63fd73af9c4bd661",
+                "sha256:771febc131e0c91028b1939ed0438de3d10cfc3d42072da56481f4c4acce6cc1",
+                "sha256:2361f76cf783b8e0a8f6ec9d6352c96e8e739231000330709c6e45c45fbe051e",
+                "sha256:d8e7dd5df5c719e7e90a739944c9205d037eb2fd752eebccfd26f24734bd3cb8"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2025-02-07T21:31:25.529626689Z"
+        }
+    }
+]
