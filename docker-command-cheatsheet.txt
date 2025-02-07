@@ -99,22 +99,44 @@ docker image ls --help
 https://docs.docker.com/engine/reference/commandline/image_ls/
 
 *** 03_03 ***
+Tags - Used to identify distinct versions of image
+(In our base image - python:3.12-rc-bookworm, python is name of image, everything after : is tag
+tag has both version and os here)
+Usual standard for tag   :<version>-<os or other dependency>
+
+We use docker build with -t to add tag to images.
 docker build -t SOURCE_IMAGE[:TAG] .
 
+It we don't specify tag like below, default tag 'latest' will be used as tag. Below will create image    big-star-collectibles:latest
 docker build -t big-star-collectibles .
 
+It is good practice to :
+- Give version tag to all our images
+- To ensure that latest points to the latest tested version
+Below commands creates two ensuring the above two points.(--no-cache to ensure new build)
+When we do docker images ls we see two images with different tags, with same image as image id is same
 docker build --no-cache -t big-star-collectibles:v1 -t big-star-collectibles .
 
+Check the created images and their tags using docker images ls
 docker image ls
 
+
+We can also use docker tag to apply tags to images
 docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
 
 docker tag big-star-collectibles:v1 big-star-collectibles:v1-python
 
-docker build --no-cache -t big-star-collectibles:v2 .
+docker build --no-cache -t big-star-collectibles:v2 .       (Done below)
 
 docker tag SOURCE_IMAGE_ID TARGET_IMAGE[:TAG]
 
+We can add labels to images using below syntax in Dockerfile.
+Labels are like metadata
 LABEL <key>=<value> <key>=<value> <key>=<value> ...
 
+There is no filter by tag, but We can also filter based on those labels as below
 docker image ls --filter label="com.example.vendor"="Big Star Collectibles"
+
+After adding label, build new version (Also add latest to get latest to v2)
+docker build --no-cache -t big-star-collectibles:v2 .
+
