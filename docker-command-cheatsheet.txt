@@ -218,10 +218,22 @@ https://docs.docker.com/engine/reference/commandline/inspect/
 
 docker inspect [OPTIONS] NAME|ID [NAME|ID...]
 
+Get the name or id of container using docker ps and then use docker inspect
 docker ps
 
+inspect same command for images and containers, it shows the info for container in json format(example file added). Some common fields added below
 docker inspect [ID]
 
+State - has status flags and pid for the container
+Image - image the container is running
+LogPath - path where containers logs are there, we use this to ship logs to central location and save disc space
+Also study Log rotation
+Name - assigned name for container (like  nice_goldstine)
+Restart count - no of times container has restarted (used in restart policy)
+Host Config - includes Config how container interacts with Host
+Config - runtime config options
+
+Different ways to use the command using format to get specific fields or information
 docker inspect --format='{{.Config.Image}}' [NAME|ID]
 
 docker inspect --format='{{.Id}}' [NAME|ID]
