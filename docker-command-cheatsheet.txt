@@ -252,16 +252,46 @@ docker logs --tail 1000 -f --until 60 [NAME|ID]
 docker logs --tail 1000 -f --timestamps [NAME|ID]
 
 *** 04_05 ***
+Volume VS Bind mount - both used to share dat between host machine and container, but differnt use case
+Volume - A directory on host machine that is accessible by container. 
+volume is in host's file system (not containers). So data persists irrespective of container deletion  or recreation
+volumes are used for data that need to persist(ike data from db), also it can be common across containers.?
+Volume has to be created using docker volume create, added to run command using -v option or in dockerfile
+
+Both can be specified using -v option in run command
+
+Bind mount - Data inside bind mount is stores inside container. Useful when we need to share files among. 
+Data in bind mount will be lost if container is removed. ??
+
+We can use -v or --mount for binding.(or both ?)
+-v creates if the file doesnot exist in host  - so recommended to use
+--mount causes error if the file doesn't exist.
+
+
+Volume created using below command
 docker volume create big-star-collectibles-vol
 
+Lists all docker columes
 docker volume ls
 
+Inspect volume (Useful info like the mountpath - path inside the container where data from volume is located)
 docker volume inspect big-star-collectibles-vol
 
+To attach volume we use -v volume-path:container-path
 docker run -it -d -p 5000:5000 -v big-star-collectibles-vol:/app/data sbenhoff/big-star-collectibles-repo:big-star-collectibles
+
+Volume can also be specified in DockerFile using VOLUME (then neednot include everytime in run command)
 
 docker volume rm big-star-collectibles-vol
 
 docker run -it -d -p 5000:5000 -v "$(PWD)/test"/target:/app/test sbenhoff/big-star-collectibles-repo:big-star-collectibles
 
 docker run -it -d -p 5000:5000 --mount type=bind,source="$(PWD)/test",target=/app/test sbenhoff/big-star-collectibles-repo:big-star-collectibles
+
+to test if bind is correctly working
+- Get container id with docker ps
+- Run shell on the container in interactive mode
+docker exec -it <container_id> sh
+#
+- In the below shell, use command like ls to show all the files
+#ls
