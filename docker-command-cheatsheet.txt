@@ -267,14 +267,28 @@ docker run -it -d -p 5000:5000 -v "$(PWD)/test"/target:/app/test sbenhoff/big-st
 docker run -it -d -p 5000:5000 --mount type=bind,source="$(PWD)/test",target=/app/test sbenhoff/big-star-collectibles-repo:big-star-collectibles
 
 *** 04_06 ***
+Daily workflow - should clean the resources not used.
+
+image prune - will clean any dangling images - not used, not tagged images, not used by container.
 docker image prune
+
+It asks confirmation [y/n] - to skip that use -f
+-a to delete all images not used by existin gcontainers
 
 docker image prune -a -f
 
+We can use filter to prune images (we can use label or until conditions)
 docker image prune -a -f --filter label="com.example.vendor"="Big Star Collectibles"
 
+Also , stopped containers are not removed we need to remove them also using prune. (-f similar)
 docker container prune
 
+Pruning volumes also work in similar way (here only filter by label)
 docker volume prune -f --filter label="com.example.vendor"="Big Star Collectibles"
 
+Shortcut command - prunes all images, containers , networks (volumes not by default, we need to specify by flag below)
+docker system prune -f 
+
 docker system prune --volumes -f
+
+There is no filtering for system prune
