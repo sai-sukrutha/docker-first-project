@@ -235,6 +235,14 @@ https://docs.docker.com/engine/reference/commandline/logs/
 
 docker logs [OPTIONS] CONTAINER
 
+--tail is used to set the number of lines from the bottom of log(latest number of lines) ()
+-f indicates that the log will continue to stream (also useful for webpages - refresh)
+--details will show extra details 
+--since - logs after(since) the given timestamp
+(We can specify the timestamps for both commands in either utc format or relative minutes)
+--until - logs before(until) the given timestamp
+--timestamps - will show the timestamps in log output
+
 docker logs --tail 1000 -f [NAME|ID]
 
 docker logs --tail 1000 -f --details [NAME|ID]
@@ -250,3 +258,5 @@ docker logs --tail 1000 -f --since 60 [NAME|ID]
 docker logs --tail 1000 -f --until 60 [NAME|ID]
 
 docker logs --tail 1000 -f --timestamps [NAME|ID]
+
+We can also view container logs in VSCode extension or Docker desktop
